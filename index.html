@@ -63,38 +63,34 @@
 <body>
   <h1>Pollería El Sabor</h1>
   <p class="subtitulo"><strong>Haz tu pedido por WhatsApp</strong></p>
-  <div class="producto">
-    <img src="polloalabrasa.webp" alt="Pollo a la Brasa">
-    <h2>1/8 de pollo con papas</h2>
-    <p>Incluye ensalada y cremas</p>
-    <p class="precio">S/ 18.00 </p>
-    <a class="boton" href="https://wa.me/51933201051?text=Hola%2C%20quiero%20pedir%201%2F8%20de%20pollo%20con%20papas" target="_blank">
-  Pedir por WhatsApp
-</a>
-  </div>
+  <div id="catalogo"></div>
 
+<script>
+  const numero = "51999999999"; // Reemplaza con tu número de WhatsApp
 
-  <p class="subtitulo"><strong>Haz tu pedido por WhatsApp</strong></p>
-  <div class="producto">
-    <img src="polloalabrasa.webp" alt="Pollo a la Brasa">
-    <h2>1/4 de pollo con papas</h2>
-    <p>Incluye ensalada y cremas</p>
-    <p class="precio">S/ 21.00 </p>
-    <a class="boton" href="https://wa.me/51933201051?text=Hola%2C%20quiero%20pedir%201%2F8%20de%20pollo%20con%20papas" target="_blank">
-    Pedir por WhatsApp
-    </a>
-  </div>
+  const productos = [
+    { nombre: "1/8 de pollo con papas", descripcion: "Incluye ensalada y cremas.", precio: 18, imagen: "polloalabrasa.webp" },
+    { nombre: "1/4 de pollo con papas", descripcion: "Incluye ensalada y cremas.", precio: 32, imagen: "polloalabrasa.webp" },
+    { nombre: "1 pollo con papas", descripcion: "Incluye ensalada y cremas.", precio: 60, imagen: "polloalabrasa.webp" },
+    { nombre: "Helado de vainilla", descripcion: "Incluye topping de chocolate.", precio: 10, imagen: "vainillahelado.jpg"}
+  ];
 
-  
-  <p class="subtitulo"><strong>Haz tu pedido por WhatsApp</strong></p>
-  <div class="producto">
-    <img src="polloalabrasa.webp" alt="Pollo a la Brasa">
-    <h2>1 de pollo con papas</h2>
-    <p>Incluye ensalada y cremas</p>
-    <p class="precio">S/ 36.00 </p>
-    <a class="boton" href="https://wa.me/51933201051?text=Hola%2C%20quiero%20pedir%201%2F8%20de%20pollo%20con%20papas" target="_blank">
-    Pedir por WhatsApp
-    </a>
-   </div>
+  const contenedor = document.getElementById("catalogo");
+
+  productos.forEach(function (p) {
+    const mensaje = "Hola, quiero pedir " + p.nombre;
+    const link = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje);
+
+    contenedor.innerHTML += `
+      <div class="producto">
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h2>${p.nombre}</h2>
+        <p>${p.descripcion}</p>
+        <p class="precio">S/ ${p.precio.toFixed(2)}</p>
+        <a class="boton" href="${link}" target="_blank">Pedir por WhatsApp</a>
+      </div>
+    `;
+  });
+</script>
 </body>
 </html>
